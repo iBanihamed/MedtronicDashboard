@@ -1,0 +1,122 @@
+﻿<Window x:Class="WpfApp1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="Workstation" Height="450" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" Foreground="White">
+    <Window.Resources>
+        <Storyboard x:Key="MenuOpen">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="58"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="150"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="MenuClose">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="150"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="58"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+    
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonOpenMenu">
+            <BeginStoryboard Storyboard="{StaticResource MenuOpen}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonCloseMenu">
+            <BeginStoryboard Storyboard="{StaticResource MenuClose}"/>
+        </EventTrigger>
+    </Window.Triggers>
+    
+    <Grid Background="LightGray">
+        <Grid Height = "60" VerticalAlignment = "Top" Background="#FF09173C">
+            <TextBlock Text="Medtronic" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22" FontFamily="Arial Black"/>
+            <StackPanel VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Right">
+                <TextBlock Name ="UsernameDisplay" Text="Ismael Banihamed" VerticalAlignment="Center" FontSize="18" />
+                <materialDesign:PopupBox HorizontalAlignment="Right" Margin="10" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False">
+                    <StackPanel Width="150" >
+                        <Button Content="Account"/>
+                        <Button Content="Settings"/>
+                        <Button Content="Help"/>
+                        <Separator/>
+                        <Button x:Name ="ButtonPopUpLogout" Content="Logout" Click="ButtonPopUpLogout_Click"/>
+                    </StackPanel>
+                </materialDesign:PopupBox>
+            </StackPanel>
+        </Grid>
+        <Grid x:Name ="GridMenu" Width="60" HorizontalAlignment="Left" Background="#FF1747C7">
+            <StackPanel>
+                <Grid Height="60" Background="lightgray">
+                    <TextBlock  Name="curTime" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="Black"/>
+                    <Button x:Name ="ButtonOpenMenu" Width ="30" Height="30" Background ="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Click="ButtonOpenMenu_Click" >
+                        <materialDesign:PackIcon Kind="Menu" Foreground="#FF09173C" Background ="LightGray" Width="25" Height="25" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    </Button>
+                    <Button x:Name ="ButtonCloseMenu" Width ="30" Height="30" Background ="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Right" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Click="ButtonCloseMenu_Click" Visibility="Collapsed">
+                        <materialDesign:PackIcon Kind="ArrowLeft" Foreground="Black" Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Button>
+                </Grid>
+                <ListView x:Name ="ListViewSideBar" Foreground="#FF09173C">
+                    <ListViewItem x:Name ="TasksOpen" BorderBrush="LightSteelBlue" BorderThickness="2" Background="#FF09173C" materialDesign:ShadowAssist.Darken="True" Foreground="White">
+                        <Button x:Name="ButtonTasks" Click="ButtonTasks_Click" Background="Transparent" BorderBrush="Transparent"> 
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Briefcase" VerticalAlignment="Center" Height="25" Width="25"/>
+                                <TextBlock Text="    Tasks" FontFamily="Tw Cen MT Condensed Extra Bold" VerticalAlignment="Center" FontSize="17"/>
+                            </StackPanel>
+                        </Button>
+                    </ListViewItem>
+                    <ListViewItem x:Name="OutlookOpen" BorderBrush="LightSteelBlue" BorderThickness="2" Background="#FF09173C" Foreground="White">
+                        <Button x:Name="ButtonOutlook" Click="ButtonOutlook_Click" Background="Transparent" BorderBrush="Transparent">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Email" VerticalAlignment="Center" Height="25" Width="25"/>
+                                <TextBlock Text="    Outlook" FontFamily="Tw Cen MT Condensed Extra Bold" VerticalAlignment="Center" FontSize="17"/>
+                            </StackPanel>
+                        </Button>
+                    </ListViewItem>
+                    <ListViewItem BorderBrush="LightSteelBlue" BorderThickness="2" Background="#FF09173C" Foreground="White">
+                        <Button x:Name="ButtonExcel" Click="ButtonExcel_Click" Background="Transparent" BorderBrush="Transparent">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="FileExcel" VerticalAlignment="Center" Height="25" Width="25"/>
+                                <TextBlock Text="    Excel" FontFamily="Tw Cen MT Condensed Extra Bold" VerticalAlignment="Center" FontSize="17"/>
+                            </StackPanel>
+                        </Button>
+                    </ListViewItem>
+                    <ListViewItem BorderBrush="LightSteelBlue" BorderThickness="2" Background="#FF09173C" Foreground="White">
+                        <Button x:Name="ButtonWord" Click="ButtonWord_Click" Background="Transparent" BorderBrush="Transparent">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="FileWord" VerticalAlignment="Center" Height="25" Width="25"/>
+                                <TextBlock Text="    Word" FontFamily="Tw Cen MT Condensed Extra Bold" VerticalAlignment="Center" FontSize="17"/>
+                            </StackPanel>
+                        </Button>
+                    </ListViewItem>
+                    <ListViewItem BorderBrush="LightSteelBlue" BorderThickness="2" Background="#FF09173C" Foreground="White">
+                        <Button x:Name="ButtonChrome" Click="ButtonChrome_Click" Background="Transparent" BorderBrush="Transparent">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="GoogleChrome" VerticalAlignment="Center" Height="25" Width="25"/>
+                                <TextBlock Text="    Chrome" FontFamily="Tw Cen MT Condensed Extra Bold" VerticalAlignment="Center" FontSize="17"/>
+                            </StackPanel>
+                        </Button>
+                    </ListViewItem>
+                    <ListViewItem BorderBrush="LightSteelBlue" BorderThickness="2" Background="#FF09173C" Foreground="White">
+                        <Button x:Name="ButtonVisualStudio" Click="ButtonVisualStudio_Click" Background="Transparent" BorderBrush="Transparent">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="CodeBraces" VerticalAlignment="Center" Height="25" Width="25"/>
+                                <TextBlock Text="    VisualStudio" FontFamily="Tw Cen MT Condensed Extra Bold" VerticalAlignment="Center" FontSize="17"/>
+                            </StackPanel>
+                        </Button>
+                    </ListViewItem>
+                    <ListViewItem BorderBrush="LightSteelBlue" BorderThickness="2" Background="#FF09173C" Foreground="White">
+                        <Button x:Name="ButtonJabber" Click="ButtonJabber_Click" Background="Transparent" BorderBrush="Transparent">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Message" VerticalAlignment="Center" Height="25" Width="25"/>
+                                <TextBlock Text="    Jabber" FontFamily="Tw Cen MT Condensed Extra Bold" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="17" />
+                            </StackPanel>
+                        </Button>
+                    </ListViewItem>
+                </ListView>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
