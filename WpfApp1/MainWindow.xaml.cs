@@ -25,6 +25,7 @@ namespace WpfApp1
         {
             InitializeComponent();
             curTime.Text = DateTime.Now.ToString();
+      
             //curDate.Text = Date.Now>ToString()
         }
 
@@ -37,12 +38,14 @@ namespace WpfApp1
         {
             ButtonOpenMenu.Visibility = Visibility.Collapsed;
             ButtonCloseMenu.Visibility = Visibility.Visible;
+            curTime.Visibility = Visibility.Visible;
         }
 
         private void ButtonCloseMenu_Click(object sender, RoutedEventArgs e)
         {
             ButtonOpenMenu.Visibility = Visibility.Visible;
             ButtonCloseMenu.Visibility = Visibility.Collapsed;
+            curTime.Visibility = Visibility.Collapsed;
         }
 
         private void ButtonOutlook_Click(object sender, RoutedEventArgs e)
@@ -113,6 +116,41 @@ namespace WpfApp1
             newProcess.StartInfo.Arguments = "";
 
             bool result = newProcess.Start();
+        }
+
+        //preferences buttons
+        private void ButtonAccount_Click(object sender, RoutedEventArgs e)
+        {
+            GridAccount.Visibility = Visibility.Visible;
+            GridSettings.Visibility = Visibility.Collapsed;
+            GridHelp.Visibility = Visibility.Collapsed;
+        }
+
+        //Account PAge ACtions
+        private void ButtonApplyAccount_Click(object sender, RoutedEventArgs e)
+        {
+            UsernameDisplay.Text = textboxUsername.Text;
+            ChangeThemeColor(Brushes.Olive);
+        }
+
+        private void ButtonSettings_Click(object sender, RoutedEventArgs e)
+        {
+            GridAccount.Visibility = Visibility.Collapsed;
+            GridSettings.Visibility = Visibility.Visible;
+            GridHelp.Visibility = Visibility.Collapsed;
+        }
+
+        private void ButtonHelp_Click(object sender, RoutedEventArgs e)
+        {
+            GridAccount.Visibility = Visibility.Collapsed;
+            GridSettings.Visibility = Visibility.Collapsed;
+            GridHelp.Visibility = Visibility.Visible;
+        }
+
+        //Change Color Theme method
+        private void ChangeThemeColor(Brush themeColor)
+        {
+            TopGrid.Background = themeColor;
         }
     }
 }

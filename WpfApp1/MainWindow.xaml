@@ -21,7 +21,7 @@
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
     </Window.Resources>
-    
+
     <Window.Triggers>
         <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonOpenMenu">
             <BeginStoryboard Storyboard="{StaticResource MenuOpen}"/>
@@ -30,17 +30,17 @@
             <BeginStoryboard Storyboard="{StaticResource MenuClose}"/>
         </EventTrigger>
     </Window.Triggers>
-    
+
     <Grid Background="LightGray">
-        <Grid Height = "60" VerticalAlignment = "Top" Background="#FF09173C">
+        <Grid x:Name ="TopGrid" Height = "60" VerticalAlignment = "Top" Background="#FF09173C">
             <TextBlock Text="Medtronic" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22" FontFamily="Arial Black"/>
             <StackPanel VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Right">
-                <TextBlock Name ="UsernameDisplay" Text="Ismael Banihamed" VerticalAlignment="Center" FontSize="18" />
+                <TextBlock Name ="UsernameDisplay" Text="Username" VerticalAlignment="Center" FontSize="18" />
                 <materialDesign:PopupBox HorizontalAlignment="Right" Margin="10" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False">
                     <StackPanel Width="150" >
-                        <Button Content="Account"/>
-                        <Button Content="Settings"/>
-                        <Button Content="Help"/>
+                        <Button x:Name="ButtonAccount" Content="Account" Click="ButtonAccount_Click"/>
+                        <Button x:Name="ButtonSettings"  Content="Settings" Click="ButtonSettings_Click"/>
+                        <Button x:Name="ButtonHelp"  Content="Help" Click="ButtonHelp_Click"/>
                         <Separator/>
                         <Button x:Name ="ButtonPopUpLogout" Content="Logout" Click="ButtonPopUpLogout_Click"/>
                     </StackPanel>
@@ -50,7 +50,7 @@
         <Grid x:Name ="GridMenu" Width="60" HorizontalAlignment="Left" Background="#FF1747C7">
             <StackPanel>
                 <Grid Height="60" Background="lightgray">
-                    <TextBlock  Name="curTime" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="Black"/>
+                    <TextBlock  Name="curTime" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="Black" Visibility="Collapsed"/>
                     <Button x:Name ="ButtonOpenMenu" Width ="30" Height="30" Background ="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Click="ButtonOpenMenu_Click" >
                         <materialDesign:PackIcon Kind="Menu" Foreground="#FF09173C" Background ="LightGray" Width="25" Height="25" HorizontalAlignment="Right" VerticalAlignment="Center"/>
                     </Button>
@@ -60,7 +60,7 @@
                 </Grid>
                 <ListView x:Name ="ListViewSideBar" Foreground="#FF09173C">
                     <ListViewItem x:Name ="TasksOpen" BorderBrush="LightSteelBlue" BorderThickness="2" Background="#FF09173C" materialDesign:ShadowAssist.Darken="True" Foreground="White">
-                        <Button x:Name="ButtonTasks" Click="ButtonTasks_Click" Background="Transparent" BorderBrush="Transparent"> 
+                        <Button x:Name="ButtonTasks" Click="ButtonTasks_Click" Background="Transparent" BorderBrush="Transparent">
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="Briefcase" VerticalAlignment="Center" Height="25" Width="25"/>
                                 <TextBlock Text="    Tasks" FontFamily="Tw Cen MT Condensed Extra Bold" VerticalAlignment="Center" FontSize="17"/>
@@ -118,5 +118,43 @@
                 </ListView>
             </StackPanel>
         </Grid>
+        <Grid x:Name="GridAccount" VerticalAlignment="Bottom" Height="390" Margin="-680,0,0,0" HorizontalAlignment="Right" Width="738">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="32*"/>
+                <RowDefinition Height="163*"/>
+            </Grid.RowDefinitions>
+            <TextBlock VerticalAlignment="Top" Text="Username" FontSize="20" Foreground="Black" Margin="45,27,604,0"/>
+            <TextBox x:Name="textboxUsername" AcceptsReturn="True" Background="White" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Width="80" Height="30" Margin="45,58,613,302" Grid.RowSpan="2"/>
+            <ComboBox Width="90" Height="30" OpacityMask="White" Visibility="Visible" HorizontalAlignment="Left" Margin="304,58,0,302" Grid.RowSpan="2" Background="#FF919191" Foreground="White">
+                <ComboBoxItem x:Name="ThemeMedBlue" Background="#FF09173C">
+                    <TextBlock Text="Medtronic Blue" />
+                </ComboBoxItem>                
+                <ComboBoxItem x:Name="ThemeBlack" Background="Black">
+                    <TextBlock Text="Black"/>
+                </ComboBoxItem>
+                <ComboBoxItem x:Name="ThemeBabyBlue" Background="#FF48B1F9">
+                    <TextBlock Text="BabyBlue" />
+                </ComboBoxItem>
+                <ComboBoxItem x:Name="ThemeCrimson" Background="Crimson">
+                    <TextBlock Text="Crimson" />
+                </ComboBoxItem>
+                <ComboBoxItem x:Name="ThemePurple" Background="DarkSlateBlue">
+                <TextBlock Text="Purple" />
+                </ComboBoxItem>
+                <ComboBoxItem x:Name="ThemeNavy" Background="Navy">
+                    <TextBlock Text="Navy" />
+                </ComboBoxItem>
+            </ComboBox>
+            <TextBlock Text="Theme Color" FontSize="20" Foreground="Black" HorizontalAlignment="Center" Margin="293,25,332,11"/>
+            <Button x:Name="ButtonApplyAccount" Click="ButtonApplyAccount_Click" Height="20" Background="DarkGray" BorderBrush="Black" VerticalAlignment="Bottom" Margin="344,0,344,68" Grid.Row="1"/>
+        </Grid>
+        <Grid x:Name="GridSettings" VerticalAlignment="Bottom" Height="390" Margin="-680,0,0,0" HorizontalAlignment="Right" Width="738" Visibility="Collapsed">
+
+        </Grid>
+        <Grid x:Name="GridHelp" VerticalAlignment="Bottom" Height="390" Margin="-680,0,0,0" HorizontalAlignment="Right" Width="738" Visibility="Collapsed">
+
+        </Grid>
+
+
     </Grid>
 </Window>
