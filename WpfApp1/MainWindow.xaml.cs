@@ -26,6 +26,7 @@ namespace WpfApp1
             InitializeComponent();
             curTime.Text = DateTime.Now.ToString();
       
+        
             //curDate.Text = Date.Now>ToString()
         }
 
@@ -58,15 +59,16 @@ namespace WpfApp1
             bool result = newProcess.Start();
         }
 
+        //Tasks Page
         private void ButtonTasks_Click(object sender, RoutedEventArgs e)
         {
-            Process newProcess = new Process();
-
-            newProcess.StartInfo.FileName = "OUTLOOK";
-            newProcess.StartInfo.Arguments = "";
-
-            bool result = newProcess.Start();
+            GridTasks.Visibility = Visibility.Visible;
         }
+        private void ButtonAddTasks_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
 
         private void ButtonExcel_Click(object sender, RoutedEventArgs e)
         {
@@ -130,7 +132,7 @@ namespace WpfApp1
         private void ButtonApplyAccount_Click(object sender, RoutedEventArgs e)
         {
             UsernameDisplay.Text = textboxUsername.Text;
-            ChangeThemeColor(Brushes.Olive);
+           
         }
 
         private void ButtonSettings_Click(object sender, RoutedEventArgs e)
@@ -147,6 +149,11 @@ namespace WpfApp1
             GridHelp.Visibility = Visibility.Visible;
         }
 
+        //ThemeColorComboBox Display
+        private void ClickMedBlue(object sender, RoutedEventArgs e)
+        {
+          
+        }
         //Change Color Theme method
         private void ChangeThemeColor(Brush themeColor)
         {

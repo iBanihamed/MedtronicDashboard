@@ -118,17 +118,42 @@
                 </ListView>
             </StackPanel>
         </Grid>
-        <Grid x:Name="GridAccount" VerticalAlignment="Bottom" Height="390" Margin="-680,0,0,0" HorizontalAlignment="Right" Width="738">
+        <Grid x:Name="GridTasks" VerticalAlignment="Bottom" Height="390" Margin="-680,0,0,0" HorizontalAlignment="Right" Width="738" Visibility="Visible">
+            <StackPanel Margin="0,0,272,0">
+                <ListView x:Name="ListViewTasks" Height="389">
+                    <ListViewItem Height="36">
+                        <TextBlock Text="Todays Tasks" FontSize="15" FontWeight="Bold" Foreground="#FF09173C"/>
+                    </ListViewItem>
+                    <ListViewItem x:Name="AddTask">
+                        <Button x:Name="ButtonAddTask" Click="ButtonAddTasks_Click" Height="Auto" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Left">
+                            <materialDesign:PackIcon Kind="PlusCircle" Height="44" Width="42" Foreground="White"/>
+                        </Button>
+                     
+                    </ListViewItem>
+                </ListView>
+            </StackPanel>
+            <Calendar Margin="466,0,0,38">
+                <Calendar.BorderBrush>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFA3AEB9" Offset="0"/>
+                        <GradientStop Color="#FF8399A9" Offset="0.375"/>
+                        <GradientStop Color="#FF718597" Offset="0.375"/>
+                        <GradientStop Color="#FF617484" Offset="1"/>
+                    </LinearGradientBrush>
+                </Calendar.BorderBrush>
+            </Calendar>
+        </Grid>
+        <Grid x:Name="GridAccount" VerticalAlignment="Bottom" Height="390" Margin="-680,0,0,0" HorizontalAlignment="Right" Width="738" Visibility="Collapsed">
             <Grid.RowDefinitions>
                 <RowDefinition Height="32*"/>
                 <RowDefinition Height="163*"/>
             </Grid.RowDefinitions>
-            <TextBlock VerticalAlignment="Top" Text="Username" FontSize="20" Foreground="Black" Margin="45,27,604,0"/>
-            <TextBox x:Name="textboxUsername" AcceptsReturn="True" Background="White" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Width="80" Height="30" Margin="45,58,613,302" Grid.RowSpan="2"/>
-            <ComboBox Width="90" Height="30" OpacityMask="White" Visibility="Visible" HorizontalAlignment="Left" Margin="304,58,0,302" Grid.RowSpan="2" Background="#FF919191" Foreground="White">
+            <TextBlock VerticalAlignment="Top" Text="Username" FontSize="20" Margin="134,31,501,0" FontWeight="Bold" Foreground="#FF09173C"/>
+            <TextBox x:Name="textboxUsername" AcceptsReturn="True" Background="White" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Width="80" Height="30" Margin="134,0,524,296" Grid.Row="1"/>
+            <ComboBox x:Name="ComboBoxThemeColor" Width="90" Height="30" OpacityMask="White" Visibility="Visible" HorizontalAlignment="Left" Margin="304,58,0,302" Grid.RowSpan="2" Background="Transparent" Foreground="White">
                 <ComboBoxItem x:Name="ThemeMedBlue" Background="#FF09173C">
                     <TextBlock Text="Medtronic Blue" />
-                </ComboBoxItem>                
+                </ComboBoxItem>
                 <ComboBoxItem x:Name="ThemeBlack" Background="Black">
                     <TextBlock Text="Black"/>
                 </ComboBoxItem>
@@ -139,14 +164,18 @@
                     <TextBlock Text="Crimson" />
                 </ComboBoxItem>
                 <ComboBoxItem x:Name="ThemePurple" Background="DarkSlateBlue">
-                <TextBlock Text="Purple" />
+                    <TextBlock Text="Purple" />
                 </ComboBoxItem>
                 <ComboBoxItem x:Name="ThemeNavy" Background="Navy">
                     <TextBlock Text="Navy" />
                 </ComboBoxItem>
             </ComboBox>
-            <TextBlock Text="Theme Color" FontSize="20" Foreground="Black" HorizontalAlignment="Center" Margin="293,25,332,11"/>
-            <Button x:Name="ButtonApplyAccount" Click="ButtonApplyAccount_Click" Height="20" Background="DarkGray" BorderBrush="Black" VerticalAlignment="Bottom" Margin="344,0,344,68" Grid.Row="1"/>
+            <TextBlock Text="Theme Color" FontSize="20" HorizontalAlignment="Center" Margin="290,25,323,11" Foreground="#FF09173C" FontWeight="Bold" Width="125"/>
+            <TextBlock Text="Password"  FontSize="20" Margin="134,51,504,246" Grid.Row="1" Foreground="#FF09173C" FontWeight="Bold"/>
+            <TextBox x:Name="TextBoxPassword" AcceptsReturn="True" Background="White" Foreground="Black" Margin="134,85,524,211" Grid.Row="1" Width="80" Height="30"/>
+            <Button x:Name="ButtonApplyAccount" Click="ButtonApplyAccount_Click" Height="38" Background="DarkGray" BorderBrush="Black" VerticalAlignment="Bottom" Margin="304,0,334,68" Grid.Row="1">
+                <TextBlock Text="Apply" Foreground="#FF09173C" HorizontalAlignment="center" VerticalAlignment="center" FontWeight="ExtraBold" FontSize="18"/>
+            </Button>
         </Grid>
         <Grid x:Name="GridSettings" VerticalAlignment="Bottom" Height="390" Margin="-680,0,0,0" HorizontalAlignment="Right" Width="738" Visibility="Collapsed">
 
