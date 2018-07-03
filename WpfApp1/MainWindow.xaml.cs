@@ -62,11 +62,14 @@ namespace WpfApp1
         //Tasks Page
         private void ButtonTasks_Click(object sender, RoutedEventArgs e)
         {
+            GridAccount.Visibility = Visibility.Collapsed;
+            GridSettings.Visibility = Visibility.Collapsed;
+            GridHelp.Visibility = Visibility.Collapsed;
             GridTasks.Visibility = Visibility.Visible;
         }
         private void ButtonAddTasks_Click(object sender, RoutedEventArgs e)
         {
-
+            ListViewTasks.Items.Add(TextBoxAddTask.Text);
         }
 
 
@@ -126,6 +129,7 @@ namespace WpfApp1
             GridAccount.Visibility = Visibility.Visible;
             GridSettings.Visibility = Visibility.Collapsed;
             GridHelp.Visibility = Visibility.Collapsed;
+            GridTasks.Visibility = Visibility.Collapsed;
         }
 
         //Account PAge ACtions

@@ -47,7 +47,7 @@
                 </materialDesign:PopupBox>
             </StackPanel>
         </Grid>
-        <Grid x:Name ="GridMenu" Width="60" HorizontalAlignment="Left" Background="#FF1747C7">
+        <Grid x:Name ="GridMenu" Width="55" HorizontalAlignment="Left" Background="#FF1747C7">
             <StackPanel>
                 <Grid Height="60" Background="lightgray">
                     <TextBlock  Name="curTime" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="Black" Visibility="Collapsed"/>
@@ -119,19 +119,17 @@
             </StackPanel>
         </Grid>
         <Grid x:Name="GridTasks" VerticalAlignment="Bottom" Height="390" Margin="-680,0,0,0" HorizontalAlignment="Right" Width="738" Visibility="Visible">
-            <StackPanel Margin="0,0,272,0">
-                <ListView x:Name="ListViewTasks" Height="389">
-                    <ListViewItem Height="36">
-                        <TextBlock Text="Todays Tasks" FontSize="15" FontWeight="Bold" Foreground="#FF09173C"/>
-                    </ListViewItem>
-                    <ListViewItem x:Name="AddTask">
-                        <Button x:Name="ButtonAddTask" Click="ButtonAddTasks_Click" Height="Auto" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Left">
-                            <materialDesign:PackIcon Kind="PlusCircle" Height="44" Width="42" Foreground="White"/>
-                        </Button>
-                     
+            <StackPanel Margin="0,0,272,38">
+                <ListView x:Name="ListViewTasks" Height="345">
+                    <ListViewItem Height="36" Width="452">
+                        <TextBlock Text="Todays Tasks" FontSize="15" FontWeight="Bold" Foreground="Black"/>
                     </ListViewItem>
                 </ListView>
             </StackPanel>
+            <Button x:Name="ButtonAddTask" Click="ButtonAddTasks_Click" Height="Auto" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="left" Margin="5,352,0,0">
+                <materialDesign:PackIcon Kind="PlusCircle" Height="31" Width="33" Foreground="White"/>
+            </Button>
+            <TextBox x:Name="TextBoxAddTask" AcceptsReturn="True" Margin="70,352,0,5" HorizontalAlignment="Left" Width="391"/>
             <Calendar Margin="466,0,0,38">
                 <Calendar.BorderBrush>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
