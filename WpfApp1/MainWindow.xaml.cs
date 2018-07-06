@@ -70,8 +70,14 @@ namespace WpfApp1
         private void ButtonAddTasks_Click(object sender, RoutedEventArgs e)
         {
             ListViewTasks.Items.Add(TextBoxAddTask.Text);
+            ListViewTasks.ItemTemplate.LoadContent();
         }
+        private void ButtonDeleteTasks_Click(object sender, RoutedEventArgs e)
+        {
 
+            ListViewTasks.Items.RemoveAt(ListViewTasks.SelectedIndex); //need to fix, doesn't work
+      
+        }
 
         private void ButtonExcel_Click(object sender, RoutedEventArgs e)
         {
@@ -135,8 +141,34 @@ namespace WpfApp1
         //Account PAge ACtions
         private void ButtonApplyAccount_Click(object sender, RoutedEventArgs e)
         {
+            //Creating Brushes for Custom Colors
+            SolidColorBrush MedBlue = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF09173C"));
+            SolidColorBrush BabyBlue = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF48B1F9"));
+
             UsernameDisplay.Text = textboxUsername.Text;
-           
+            String themeCase = ComboBoxThemeColor.SelectedIndex.ToString();
+            switch(themeCase)
+            {
+
+                case "0":
+                    ChangeThemeColor(MedBlue);
+                    break;
+                case "1":
+                    ChangeThemeColor(Brushes.Black);
+                    break;
+                case "2":
+                    ChangeThemeColor(BabyBlue);
+                    break;
+                case "3":
+                    ChangeThemeColor(Brushes.Crimson);
+                    break;
+                case "4":
+                    ChangeThemeColor(Brushes.DarkSlateBlue);
+                    break;
+                default:
+                    ChangeThemeColor(Brushes.Navy);
+                    break;
+            }
         }
 
         private void ButtonSettings_Click(object sender, RoutedEventArgs e)
@@ -153,15 +185,21 @@ namespace WpfApp1
             GridHelp.Visibility = Visibility.Visible;
         }
 
-        //ThemeColorComboBox Display
-        private void ClickMedBlue(object sender, RoutedEventArgs e)
-        {
-          
-        }
         //Change Color Theme method
         private void ChangeThemeColor(Brush themeColor)
         {
             TopGrid.Background = themeColor;
+            ListViewSideBar.Background = themeColor;
+            TasksOpen.Background = themeColor;
+            ExcelOpen.Background = themeColor;
+            WordOpen.Background = themeColor;
+            JabberOpen.Background = themeColor;
+            VisualStudioOpen.Background = themeColor;
+            ChromeOpen.Background = themeColor;
+            OutlookOpen.Background = themeColor;
         }
+
+    
+       
     }
 }

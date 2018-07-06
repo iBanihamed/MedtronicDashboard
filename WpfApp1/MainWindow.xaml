@@ -75,7 +75,7 @@
                             </StackPanel>
                         </Button>
                     </ListViewItem>
-                    <ListViewItem BorderBrush="LightSteelBlue" BorderThickness="2" Background="#FF09173C" Foreground="White">
+                    <ListViewItem x:Name ="ExcelOpen" BorderBrush="LightSteelBlue" BorderThickness="2" Background="#FF09173C" Foreground="White">
                         <Button x:Name="ButtonExcel" Click="ButtonExcel_Click" Background="Transparent" BorderBrush="Transparent">
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="FileExcel" VerticalAlignment="Center" Height="25" Width="25"/>
@@ -83,7 +83,7 @@
                             </StackPanel>
                         </Button>
                     </ListViewItem>
-                    <ListViewItem BorderBrush="LightSteelBlue" BorderThickness="2" Background="#FF09173C" Foreground="White">
+                    <ListViewItem x:Name="WordOpen" BorderBrush="LightSteelBlue" BorderThickness="2" Background="#FF09173C" Foreground="White">
                         <Button x:Name="ButtonWord" Click="ButtonWord_Click" Background="Transparent" BorderBrush="Transparent">
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="FileWord" VerticalAlignment="Center" Height="25" Width="25"/>
@@ -91,7 +91,7 @@
                             </StackPanel>
                         </Button>
                     </ListViewItem>
-                    <ListViewItem BorderBrush="LightSteelBlue" BorderThickness="2" Background="#FF09173C" Foreground="White">
+                    <ListViewItem x:Name="ChromeOpen" BorderBrush="LightSteelBlue" BorderThickness="2" Background="#FF09173C" Foreground="White">
                         <Button x:Name="ButtonChrome" Click="ButtonChrome_Click" Background="Transparent" BorderBrush="Transparent">
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="GoogleChrome" VerticalAlignment="Center" Height="25" Width="25"/>
@@ -99,7 +99,7 @@
                             </StackPanel>
                         </Button>
                     </ListViewItem>
-                    <ListViewItem BorderBrush="LightSteelBlue" BorderThickness="2" Background="#FF09173C" Foreground="White">
+                    <ListViewItem x:Name="VisualStudioOpen" BorderBrush="LightSteelBlue" BorderThickness="2" Background="#FF09173C" Foreground="White">
                         <Button x:Name="ButtonVisualStudio" Click="ButtonVisualStudio_Click" Background="Transparent" BorderBrush="Transparent">
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="CodeBraces" VerticalAlignment="Center" Height="25" Width="25"/>
@@ -107,7 +107,7 @@
                             </StackPanel>
                         </Button>
                     </ListViewItem>
-                    <ListViewItem BorderBrush="LightSteelBlue" BorderThickness="2" Background="#FF09173C" Foreground="White">
+                    <ListViewItem x:Name="JabberOpen" BorderBrush="LightSteelBlue" BorderThickness="2" Background="#FF09173C" Foreground="White">
                         <Button x:Name="ButtonJabber" Click="ButtonJabber_Click" Background="Transparent" BorderBrush="Transparent">
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Kind="Message" VerticalAlignment="Center" Height="25" Width="25"/>
@@ -118,18 +118,26 @@
                 </ListView>
             </StackPanel>
         </Grid>
-        <Grid x:Name="GridTasks" VerticalAlignment="Bottom" Height="390" Margin="-680,0,0,0" HorizontalAlignment="Right" Width="738" Visibility="Visible">
+        <Grid x:Name="GridTasks" VerticalAlignment="Bottom" Height="390" Margin="-680,0,0,0" HorizontalAlignment="Right" Width="738" Visibility="Collapsed">
             <StackPanel Margin="0,0,272,38">
-                <ListView x:Name="ListViewTasks" Height="345">
-                    <ListViewItem Height="36" Width="452">
-                        <TextBlock Text="Todays Tasks" FontSize="15" FontWeight="Bold" Foreground="Black"/>
-                    </ListViewItem>
+                <TextBlock Text="Today's Tasks" FontSize="20" FontWeight="Bold" Foreground="Black"/>
+                <ListView x:Name="ListViewTasks" Height="325">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" Height="40">
+                                <TextBlock x:Name="TextBlockTask" Text="{Binding TextBoxAddTask}" VerticalAlignment="Center"/>
+                                <Button x:Name="ButtonDeleteTasks" Click="ButtonDeleteTasks_Click" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Center">
+                                    <materialDesign:PackIcon Kind="Delete" Height="31" Width="33" Foreground="White"/>
+                                </Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
                 </ListView>
             </StackPanel>
             <Button x:Name="ButtonAddTask" Click="ButtonAddTasks_Click" Height="Auto" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="left" Margin="5,352,0,0">
                 <materialDesign:PackIcon Kind="PlusCircle" Height="31" Width="33" Foreground="White"/>
             </Button>
-            <TextBox x:Name="TextBoxAddTask" AcceptsReturn="True" Margin="70,352,0,5" HorizontalAlignment="Left" Width="391"/>
+            <TextBox x:Name="TextBoxAddTask" AcceptsReturn="True"   Margin="70,352,277,5"/>
             <Calendar Margin="466,0,0,38">
                 <Calendar.BorderBrush>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -141,7 +149,7 @@
                 </Calendar.BorderBrush>
             </Calendar>
         </Grid>
-        <Grid x:Name="GridAccount" VerticalAlignment="Bottom" Height="390" Margin="-680,0,0,0" HorizontalAlignment="Right" Width="738" Visibility="Collapsed">
+        <Grid x:Name="GridAccount" VerticalAlignment="Bottom" Height="390" Margin="-680,0,0,0" HorizontalAlignment="Right" Width="738" Visibility="Visible">
             <Grid.RowDefinitions>
                 <RowDefinition Height="32*"/>
                 <RowDefinition Height="163*"/>
@@ -170,7 +178,7 @@
             </ComboBox>
             <TextBlock Text="Theme Color" FontSize="20" HorizontalAlignment="Center" Margin="290,25,323,11" Foreground="#FF09173C" FontWeight="Bold" Width="125"/>
             <TextBlock Text="Password"  FontSize="20" Margin="134,51,504,246" Grid.Row="1" Foreground="#FF09173C" FontWeight="Bold"/>
-            <TextBox x:Name="TextBoxPassword" AcceptsReturn="True" Background="White" Foreground="Black" Margin="134,85,524,211" Grid.Row="1" Width="80" Height="30"/>
+            <PasswordBox x:Name="PasswordBox_Password" PasswordChar="*" Background="White" Foreground="Black" Margin="134,85,524,211" Grid.Row="1" Width="80" Height="30"/>
             <Button x:Name="ButtonApplyAccount" Click="ButtonApplyAccount_Click" Height="38" Background="DarkGray" BorderBrush="Black" VerticalAlignment="Bottom" Margin="304,0,334,68" Grid.Row="1">
                 <TextBlock Text="Apply" Foreground="#FF09173C" HorizontalAlignment="center" VerticalAlignment="center" FontWeight="ExtraBold" FontSize="18"/>
             </Button>
